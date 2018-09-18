@@ -1,0 +1,25 @@
+.btn-addnew {
+    background-color : #0066ff;
+    color : white;
+    /* font-size : 0.8rem; */
+}
+.btn-download {
+    background-color:darkslateblue;
+    color : white;
+    /* font-size : 0.8rem; */
+}
+.btn-import {
+    color : white;
+    background-color : #008040;
+    /* font-size : 0.8rem; */
+}
+.btn-export {
+    color : white;
+    background-color : #009933;
+    /* font-size : 0.8rem; */
+}
+.btn-delete {
+    color : white;
+    background-color : red;
+    /* font-size : 0.8rem; */
+}

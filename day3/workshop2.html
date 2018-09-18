@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3rd Day - Workshop 2</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+  <link rel="stylesheet" type="text/css" href="stylews2.css" />
+</head>
+
+<body>
+  <div class="pos-f-t">
+    <!-- <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <h4 class="text-white">Collapsed content</h4>
+        <span class="text-muted">Toggleable via the navbar brand.</span>
+      </div>
+    </div> -->
+    <nav class="navbar navbar-dark" style="background-color:steelblue;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" style="color:white" href="#">Josh Smith</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:white" href="#">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color:white" href="#">
+            <i class="fa fa-cogs" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container-fluid pt-3 pb-3" style="background-color:#eeeeee;">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <h5>Products</h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="text-align: right">
+        <button class="btn btn-addnew">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline">Add new</span>
+        </button>
+        <button class="btn btn-download">
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline">Download catalog as PDF</span>
+        </button>
+        <button class="btn btn-export">
+          <i class="fa fa-upload" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline">Export</span>
+        </button>
+        <button class="btn btn-import">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline">Import</span>
+        </button>
+        <button class="btn btn-delete">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline">Delete (Selected)</span>
+        </button>
+      </div>
+    </div>
+    <div class="p-1">
+      <div class="border rounded bg-white">
+        <div class="form-group row m-2">
+          <label for="txtProductName" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Product
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="txtProductName" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block">Product
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control form-control-sm" id="txtProductName" placeholder="Product">
+          </div>
+          <label for="ddlStored" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Store
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="ddlStored" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block">Store
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <div class="col-sm-5">
+            <select id="ddlStored" class="form-control form-control-sm">
+              <option value="0">All</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row m-2">
+          <label for="ddlCategory" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Category
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="ddlCategory" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block">Category
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <div class="col-sm-3">
+            <select id="ddlCategory" class="form-control form-control-sm">
+              <option value="0">All</option>
+            </select>
+          </div>
+          <label for="ddlWarehouse" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Warehouse
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="ddlWarehouse" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block">Warehouse
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <div class="col-sm-5">
+            <select id="ddlWarehouse" class="form-control form-control-sm">
+              <option value="0">All</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row m-2">
+          <label for="cbSearchSubCat" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Search sub category
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="cbSearchSubCat" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block align-top">
+            <div class="d-flex justify-content-end">
+              <div class="mr-1">Search sub category</div>
+              <div>
+                <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+          </label>
+          <div class="col-sm-3">
+            <div class="form-check align-middle">
+              <input class="form-check-input" type="checkbox" id="chkSearch">&nbsp;
+            </div>
+          </div>
+          <label for="ddlProductType" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Product type
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="ddlProductType" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block">Product type
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <div class="col-sm-5">
+            <select id="ddlProductType" class="form-control form-control-sm">
+              <option value="0">All</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row m-2">
+          <label for="ddlManufac" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Manufacturer
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="ddlManufac" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block">Manufacturer
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <div class="col-sm-3">
+            <select id="ddlManufac" class="form-control form-control-sm">
+              <option value="0">All</option>
+            </select>
+          </div>
+          <label for="ddlPublished" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Published
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="ddlPublished" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block">Published
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <div class="col-sm-5">
+            <select id="ddlPublished" class="form-control form-control-sm">
+              <option value="0">All</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row m-2">
+          <label for="ddlVender" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Vender
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="ddlVender" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block">Vender
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <div class="col-sm-3">
+            <select id="ddlVender" class="form-control form-control-sm">
+              <option value="0">All</option>
+            </select>
+          </div>
+          <label for="txtGo" class="col-sm-2 col-form-label col-form-label-sm font-weight-bold d-block d-sm-none">Go directly to product SKU
+            <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+          </label>
+          <label for="txtGo" class="col-sm-2 col-form-label col-form-label-sm text-right font-weight-bold d-none d-sm-block align-top">
+            <div class="d-flex justify-content-end">
+              <div class="mr-1">Go directly to product SKU</div>
+              <div>
+                <i class="fa fa-question-circle text-primary" aria-hidden="true"></i>
+              </div>
+            </div>
+          </label>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="input-group">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-info rounded-0" type="button">Go</button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row m-2 text-center">
+          <div class="col-12">
+            <button class="btn btn-primary">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <span>Search</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-1">
+      <div class="border rounded bg-white">
+        <div class="form-group row m-3">
+          <div class="table-responsive">
+            <table class="table table-bordered" style="font-size:0.8rem">
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox" id="chkAll">
+                  </th>
+                  <th>Picture</th>
+                  <th>Product</th>
+                  <th>SKU</th>
+                  <th>Price</th>
+                  <th>Stock quantity</th>
+                  <th>Product type</th>
+                  <th>Published</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="checkbox" id="chkItem1">
+                  </td>
+                  <td>
+                    <img src="giftcard.png" />
+                  </td>
+                  <td>$100 Physical Gift Card</td>
+                  <td>PG_CR_100</td>
+                  <td>100</td>
+                  <td></td>
+                  <td>Simple</td>
+                  <td>
+                    <i class="fa fa-check text-primary" aria-hidden="true"></i>
+                  </td>
+                  <td>
+                    <button class="btn btn-default">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="d-none d-sm-inline">Edit</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="checkbox" id="chkItem2">
+                  </td>
+                  <td>
+                    <img src="giftcard.png" />
+                  </td>
+                  <td>25$ Virtual Gift Card</td>
+                  <td>VG_CR_025</td>
+                  <td>25</td>
+                  <td></td>
+                  <td>Simple</td>
+                  <td>
+                    <i class="fa fa-check text-primary" aria-hidden="true"></i>
+                  </td>
+                  <td>
+                    <button class="btn btn-default">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      <span class="d-none d-sm-inline">Edit</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
