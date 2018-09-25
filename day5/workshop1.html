@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4th Day - Workshop2</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="jquery.contextmenu.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- <script src="https://github.com/nitipan/codecampjs/releases/download/v1.0.0/codecamp.js"></script> -->
+    <script src="codecamp.js"></script>
+    <script src="jquery.contextmenu.js"></script>
+    <style>
+        .chartBar {
+            padding: 0.2rem;
+            border-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="testContext">Test Context</div>
+    <div>&nbsp;</div>
+    <div class="container">
+        <div class="form-inline mb-3">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogModalAddWidget">Add Chart</button>
+        </div>
+        <div id="chart_container" class="form-row"></div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="dialogModalAddWidget" tabindex="-1" role="dialog" aria-labelledby="dialogModalAddWidgetTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Chart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="txtNumber">Chart Number</label>
+                            <input type="text" class="form-control" id="txtNumber">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="txtNumber">Time</label>
+                            <select class="form-control" name="chartTime" id="chartTime">
+                                <option value="1" selected>1 second</option>
+                                <option value="2">2 seconds</option>
+                                <option value="3">3 seconds</option>
+                                <option value="4">4 seconds</option>
+                                <option value="5">5 seconds</option>
+                                <option value="6">6 seconds</option>
+                                <option value="7">7 seconds</option>
+                                <option value="8">8 seconds</option>
+                                <option value="9">9 seconds</option>
+                                <option value="10">10 seconds</option>
+                                <option value="30">30 seconds</option>
+                                <option value="300">5 Minutes</option>
+                                <option value="1800">30 Minutes</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="txtNumber">Theme Color</label>
+                            <select class="form-control" name="chartTheme" id="chartTheme">
+                                <option value="rgb(0, 153, 0)|rgba(0, 153, 0, 0.5)" selected>Green</option>
+                                <option value="rgb(255, 0, 0)|rgba(255, 0, 0, 0.5)">Red</option>
+                                <option value="rgb(0, 0, 255)|rgba(0, 0, 255, 0.5)">Blue</option>
+                                <option value="rgb(255, 255, 0)|rgba(255, 255, 0, 0.5)">Yellow</option>
+                                <option value="rgb(255, 102, 0)|rgba(255, 102, 0, 0.5)">Orange</option>
+                                <option value="rgb(255, 0, 102)|rgba(255, 0, 102, 0.5)">Pink</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>Select Chart Type</div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <img src="img_chart_line.png" alt="Line Chart">
+                            <button id="btnAddChartLine">Add Chart Line</button>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <img src="img_chart_line.png" alt="Bar Chart">
+                            <button id="btnAddChartBar">Add Chart Bar</button>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- Your script-->
+    <script src="app.js"></script>
+</body>
+
+</html>
