@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <title>Hello React</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/javascript">
+    // ด้านล่างคือ ตัวอย่างจาก อาจารย์
+    // const helloReact = React.createElement(
+    //   'div',
+    //   null,
+    //   'Hello React!'
+    // );
+    // ReactDOM.render(helloReact, document.getElementById('root'));
+    
+    // ด้านล่างคือการโยน React Element เข้าไป 2 อันใน 'root' 
+    // const helloReact = React.createElement(
+    //   'div',
+    //   null,
+    //   'Hello React!'
+    // );
+    // const helloReact2 = React.createElement(
+    //   'div',
+    //   null,
+    //   'Hello React 2!'
+    // );
+    // // รับ Parameter เป็น Array
+    // ReactDOM.render([helloReact,helloReact2], document.getElementById('root'));
+
+    // ด้านล่างคือการโยน React Element เข้าไป 2 อันใน 'root' 
+    const TagP = React.createElement(
+      'p',
+      null,
+      'This is paragraph!'
+    );
+    const helloReact = React.createElement(
+      'div',
+      null,
+      'Hello React!',
+      TagP,  // --> Paramenter ตั้งแต่ตัวที่ 4 เป็น react element
+      React.createElement(
+        'span',
+        null,
+        'This is span!',
+        React.createElement(
+          'span',
+          null,
+          'This is inner span!'
+        )
+      ),
+      React.createElement(
+        'span',
+        null,
+        'This is span!'
+      ),
+      React.createElement(
+        'div',
+        null,
+        'This is next div'
+      )
+    );
+    const helloReact2 = React.createElement(
+      'div',
+      null,
+      'Hello React 2!'
+    );
+    ReactDOM.render([helloReact,helloReact2], document.getElementById('root'));
+
+    // ด้านล่าง เขียนทับที่เดิม
+    // const testP = React.createElement(
+    //   'p',
+    //   null,
+    //   'Test P!'
+    // );
+    // ReactDOM.render(testP, document.getElementById('root'));
+  </script>
+</body>
+</html>
