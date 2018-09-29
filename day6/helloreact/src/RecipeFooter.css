@@ -1,0 +1,13 @@
+footer {
+    height: 50px;
+    line-height: 50px;
+    vertical-align: baseline;
+    position: fixed;
+    bottom: 0%;
+    width : 100%;
+    font-size : 15px;
+    color : white;
+    text-align: center;
+    background-color: teal;
+    padding : 5px 10px;
+}

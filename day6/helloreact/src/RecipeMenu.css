@@ -1,0 +1,9 @@
+.MenuBox {
+    float : right;
+    font-size: 15px;
+}
+
+.MenuBox a {
+    padding-left: 15px;
+}
+

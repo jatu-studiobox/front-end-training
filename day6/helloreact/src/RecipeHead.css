@@ -1,0 +1,9 @@
+.HeaderBox {
+    height: 50px;
+    vertical-align: baseline;
+    line-height: 50px;
+    font-size : 20px;
+    color : white;
+    background-color: teal;
+    padding : 5px 10px;
+}

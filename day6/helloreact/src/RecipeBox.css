@@ -1,0 +1,23 @@
+.RecipeBox {
+    /* float : left; */
+    font-size: 12px;
+    margin : 5px;
+    width : 33%;
+    height: 100%;
+    border : 1px solid gray;
+}
+
+.RecipeBox .ContentBox {
+    padding : 5px;
+}
+
+.RecipeBox .ContentBox .Foodname {
+    font-weight: bold;
+    font-size : 1.1rem;
+}
+
+.RecipeBox .ContentBox .EachHead {
+    font-weight: bold;
+    padding : 8px 0px;
+}
+
