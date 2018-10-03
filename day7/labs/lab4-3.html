@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>Props: React</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    const SkillList = (props) => (
+        <ul>
+            {props.skills.map(skill =>
+            <li key={skill.id}>{skill.name}</li>)}
+        </ul>
+    );
+    class App extends React.Component {
+        state = {
+            skills: [{ id: 1, name: 'React' }, { id: 2, name: 'NodeJS' } ]
+        };
+
+        handleAddSkill = () => {
+            this.setState({
+                skills: [...this.state.skills, { id: 4, name: 'Java' }]
+            });
+        }
+
+        editSkill = (id) => {
+            this.setState({
+            skills: this.state.skills.map(skill => (
+                (skill.id === id) ? { id, name: 'Swift' }
+                : skill))
+            });
+        }
+
+        deleteSkill = (id) => {
+            this.setState({
+                skills: this.state.skills.filter(skill => skill.id !== id)
+            });
+        }
+
+        render() {
+            return (
+                <React.Fragment>
+                    <SkillList skills={this.state.skills} />
+                    <button onClick={this.handleAddSkill}>add skill</button><br/>
+                    <span onClick={() => this.editSkill(1)}> - edit</span><br/>
+                    <span onClick={() => this.deleteSkill(2)}> - x</span>
+                </React.Fragment>
+            );
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));    
+  </script>
+</body>
+
+</html>

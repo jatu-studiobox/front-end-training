@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>Props: React</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    const User = (props) => {
+      return (
+        <div>
+          <p>Name : {props.name}</p>
+          <p>Age : {props.age}</p>
+          <p>User's Children : {props.children}</p>
+          <div>
+            Show Name Func : {props.showNameFunc('test')}
+          </div>
+          <div><h1>Start section Object</h1></div>
+          <div>Object Property : {JSON.stringify(props.student)}</div>
+        </div>       
+      );
+    }
+
+    class Department extends React.Component {
+        showNameFunc = (firstname) => {
+            return <h1>My name is {firstname} </h1>;
+        }
+        student = { firstname: 'somchai', weight: 55 }
+        render() {            
+            return (<User name={this.props.name} age={this.props.age} showNameFunc={this.showNameFunc} student={this.student}>User Children</User>);
+        }
+    }
+
+    class Company extends React.Component {
+      render() {
+        return (<Department name={this.props.name} age={this.props.age} />);
+      }
+    }
+
+    class App extends React.Component {
+      render() {
+        return (
+            <Company name={this.props.name} age={this.props.age}/>
+        );
+      }
+    }
+
+    ReactDOM.render(<App name="John" age={30} />, document.getElementById('root'));
+  </script>
+</body>
+
+</html>

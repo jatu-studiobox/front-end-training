@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <title>Props: React</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const UserFunc = (props) => {
+      return (
+        <div>
+          <h1>From User Function Component:</h1>
+          <p>name: {props.name}</p>
+          <p>age: {props.age}</p>
+        </div>
+      );
+    }
+
+    UserFunc.defaultProps = {
+      name: 'john',
+      lastname: 'Doe'
+    };
+
+    UserFunc.propTypes = {
+      name : PropTypes.string,
+      lastname : PropTypes.string,
+      age : PropTypes.number
+    }
+
+    const MyTitle = (props) => {
+      return (<h1 onClick={() => props.showAlert('john lennon')}>Click Me!</h1>);
+    }
+
+    class UserClass extends React.Component {
+      static defaultProps = {
+        lastname : 'Lennon'
+      }
+      
+      static propTypes = {
+        name : PropTypes.string,
+        age : PropTypes.number
+      }
+
+      handleClick = (e) => {
+        alert('button was clicked');
+      }
+
+      handleChange = (e) => {
+        console.log(e.target.name);
+        console.log(e.target.value);
+      }
+
+      handleKeyUp = (e) => {
+        if (e.keyCode === 13) { // Enter key
+          console.log('Enter was pressed');
+        }
+      }
+
+      handleSubmit = (e) => {
+        e.preventDefault();
+        alert('form was submitted');
+      }
+
+      // การส่ง parameter เข้า function ที่ถูกเรียกใช้จาก eventHandler อีกที เพื่อเป็นแนวทางใน
+      showAlert = (value) => {
+        alert('hello ' + value);
+      }
+
+      // การส่ง parameter เข้า function ที่ถูกเรียกใช้จาก eventHandler อีกที เพื่อเป็นแนวทางใน
+      handleClick2 = (value1, value2) => e => {
+        console.log(e);
+        alert('hello ' + value1 + value2);
+      }
+      
+      render() {
+        return (
+          <div>
+            <h1>From User Class Component:</h1>
+            <p>name: {this.props.name}</p>
+            <p>age: {this.props.age}</p>
+            <p>lasname : {this.props.lastname}</p>
+            <p>weight : {this.props.weight}</p>
+            <button onClick={this.handleClick}>Call handleClick</button><br/>
+            <input name="myInput" onChange={this.handleChange} /><br/>
+            <input name="myInput2" onKeyUp={this.handleKeyUp} /><br/>
+            <br/>
+            <form onSubmit={this.handleSubmit}>
+              <input type="submit" value="Submit" />
+            </form>
+            <br />
+            <br />
+            <button
+              onClick={() => this.showAlert('john')}>
+              Click Me
+            </button>
+            <MyTitle showAlert={this.showAlert} />
+            <br />
+            <button
+              onClick={this.handleClick2('john', '222')}>
+              Click Me
+            </button>
+          </div>
+        );
+      }
+    }
+
+    UserClass.defaultProps = {
+      weight : 69
+    }
+
+    class App extends React.Component {
+      render() {
+        return (
+          <div>
+            <UserFunc name="John" age={1} />
+            <UserClass name="John" age={1} />
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
