@@ -1,0 +1,7 @@
+.CardBox {
+    height: 150px;
+    width : 120px;
+    float : left;
+    margin : 5px;
+    display : block;
+}
