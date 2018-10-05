@@ -14,26 +14,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 let Foods = [
     { 
         id : 1, 
-        pic : 'react1.png',
+        pic : react1png,
         title : 'Spagetthi',
         ingredients : ['pasta' , '8 cups water', '1 box spaghetti'],
         instructions : 'Open jar of Spaghetti sauce. Bring to simmer. Boil water. Cook pasta until done. Combine pasta and sauce.'
     },
     { 
         id : 2,
-        pic : 'react2.png',
+        pic : react2png,
         title : 'Milkshake',
         ingredients : ['2 Scopes Ice Cream' , '8 ounces milk'],
         instructions : 'Combine Ice Cream and milk. Blend until creamy'
     },
     { 
         id : 3, 
-        pic : 'react3.png',
+        pic : react3png,
         title : 'Avocado Toast',
         ingredients : ['2 slices of bread' , '1 avocado', '1 tablespoon olive oil', '1 pinch of salt', 'pepper'],
         instructions : 'Toast bread. Slice avocado and spread on bread. Add salt, old, and pepper to taste.'
     }
-  ];
+];
 
 class RecipeJob extends Component {
     state = { 
@@ -47,39 +47,48 @@ class RecipeJob extends Component {
     }
 
     deleteRecipe = (idx) => {
+        // Delete selected recipe
         Foods = this.removeFood(idx);
         //console.log(idx);
+        // Set State
         this.setState({
             //foods: this.state.foods.filter(food => food.id !== idx)
             foods: [...Foods]
         });
     }
+    
+    addFood = (recipe) => {
+        let newFoods = [...Foods,
+                        {
+                            id : Foods.reduce((maxId, food) => Math.max(food.id, maxId), -1) + 1,
+                            pic : recipe.img,
+                            title : recipe.title,
+                            ingredients : [...recipe.ingredients],
+                            instructions : recipe.instructions
+                        }];
+        return newFoods;
+    }
 
     addRecipe = (recipe) => {
-        console.log(recipe);
+        //console.log(recipe);
+        // Add new recipe
+        Foods = this.addFood(recipe);
+        // Set State
         this.setState({
-            foods: [
-                ...Foods,
-                {
-                    id : Foods.reduce((maxId, food) => Math.max(food.id, maxId), -1) + 1,
-                    pic : recipe.img,
-                    title : recipe.title,
-                    ingredients : [...recipe.ingredients],
-                    instructions : recipe.instructions
-                }
-            ],
+            foods: [...Foods],
             showForm : 'none'
         });
     }
 
     handleChange = (e) => {
         //alert (e.target.value);
-        if (e.target.value != ''){
+        if (e.target.value != '') {
             let beforeFilterFoods = [...Foods];
-            //let beforeFilterFoods = this.state.foods;
-            this.setState({ foods : beforeFilterFoods.filter(food => {
-                return food.title.toLowerCase().indexOf(e.target.value) > -1;
-            }) });
+            this.setState({ 
+                foods : beforeFilterFoods.filter(food => {
+                    return food.title.toLowerCase().indexOf(e.target.value) > -1;
+                })
+            });
         }
         else {
             this.setState({ foods : [...Foods] });
