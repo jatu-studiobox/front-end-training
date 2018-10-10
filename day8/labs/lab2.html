@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <title>Component Life Cycle: React</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    class App extends React.Component {
+      textInput2 = React.createRef();
+      handleClick2 = () => {
+        this.textInput2.current.focus();
+      }
+      handleClick = () => {
+        this.textInput.focus();
+      }
+      handleClick3 = () => {
+        console.log(this.textInput.value);
+      }
+      handleClick4 = () => {
+        console.log(this.textInput2.current.value);
+      }
+      render() {
+        return (
+          <div>
+            <input type="text" ref={this.textInput2} />
+            <button onClick={this.handleClick2}>set focus by CreateRef</button>
+            <button onClick={this.handleClick4}>Get Value by CreateRef</button>
+            <br/>
+            <input type="text" ref={(input) => this.textInput = input} /> {/* <<< ref me please */}
+            <button onClick={this.handleClick}>set focus by CallBack</button>
+            <button onClick={this.handleClick3}>Get Value by CallBack</button>
+          </div>
+          
+        );
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
