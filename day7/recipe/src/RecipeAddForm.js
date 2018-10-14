@@ -44,6 +44,9 @@ class RecipeAddForm extends Component {
     }
 
     render() {
+        if (!this.props.showForm) {
+            return null;
+        }
         const { title, img, instructions, ingredients } = this.state;
 
         const ingInput = ingredients.map((ing, i) => (
@@ -66,11 +69,11 @@ class RecipeAddForm extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">
                                     <label className="p-1" for="title">Title:</label>
-                                    <input className="form-control form-control-sm" type="text" name="title" onChange={this.handleChange} />
+                                    <input className="form-control form-control-sm" type="text" value={title} name="title" onChange={this.handleChange} />
                                 </div>
                                 <div className="form-group">
                                     <label className="p-1" for="instructions">Instruction:</label>
-                                    <input className="form-control form-control-sm" type="text" name="instructions" onChange={this.handleChange} />
+                                    <input className="form-control form-control-sm" type="text" value={instructions} name="instructions" onChange={this.handleChange} />
                                 </div>
                                 <div className="form-group">
                                     <label className="p-1">Ingredients:</label>
@@ -81,7 +84,7 @@ class RecipeAddForm extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label className="p-1" for="img">Image:</label>
-                                    <input className="form-control form-control-sm" type="text" name="img" onChange={this.handleChange} />
+                                    <input className="form-control form-control-sm" type="text" value={img} name="img" onChange={this.handleChange} />
                                 </div>
                                 <div className="form-group text-center">
                                     <button type="submit" className="btn btn-sm bg-teal text-white"><FontAwesomeIcon icon="plus-circle" /> Add Recipe</button>
