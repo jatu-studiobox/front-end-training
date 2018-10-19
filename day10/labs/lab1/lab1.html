@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="lib.js"></script>
+    <title>Redux from scratch</title>
+</head>
+
+<body>
+    <div id="root" style="text-align: center">0</div>
+    <button id="btnIncrement">+10</button>
+    <button id="btnDecrement">-2</button>
+    <script type="text/javascript">
+        'use strict';
+        // -----------------------------------------------------------------
+        // 1. สร้าง Action
+        function IncrementBy(number) {
+            return { type: 'INCREMENT', amount: number }
+        }
+        function DecrementBy(number) {
+            return { type: 'DECREMENT', amount: number }
+        }
+        // -----------------------------------------------------------------
+        // 2. สร้าง Reducer
+        function myReducer(state = { count: 0 }, action) {
+            switch (action.type) {
+                case 'INCREMENT':
+                    return { count: state.count + action.amount }
+                case 'DECREMENT':
+                    return { count: state.count - action.amount }
+                default:
+                    return state;
+            }
+        }
+        // -----------------------------------------------------------------
+        // 3. สร้าง Store
+        const store = createStore(myReducer);
+        // -----------------------------------------------------------------
+        // 4. Subcribe listener
+        function updateScreen() {
+            const state = store.getState(); // อ่านค่า state จาก store
+            document.getElementById("root").innerHTML = state.count;
+            console.log(state);
+            console.log('--------------------');
+        }
+        store.subscribe(updateScreen);
+        // -----------------------------------------------------------------
+        // 5. Dispatch Action
+        document.getElementById("btnIncrement").addEventListener("click", function () {
+            //alert('test');
+            store.dispatch(IncrementBy(10));
+        });
+        document.getElementById("btnDecrement").addEventListener("click", function () {
+            //alert('test');
+            store.dispatch(DecrementBy(2));
+        });
+    </script>
+</body>
+
+</html>
