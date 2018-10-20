@@ -75,7 +75,7 @@ class RecipeJobController extends Component {
 
     handleChange = (e) => {
         //alert (e.target.value);
-        if (e.target.value != '') {
+        if (e.target.value !== '') {
             let beforeFilterFoods = [...Foods];
             this.setState({ 
                 foods : beforeFilterFoods.filter(food => {

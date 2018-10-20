@@ -6,11 +6,11 @@ const Option = Select.Option;
 
 function setStrokeColor(value) {
     let color = "#82ca9d";
-    if (value == 'USD')
+    if (value === 'USD')
         color = "red";
-    else if (value == 'GBP')
+    else if (value === 'GBP')
         color = "blue";
-    else if (value == 'EUR')
+    else if (value === 'EUR')
         color = "green";
     return color;
 }
@@ -25,41 +25,61 @@ class BitCoinTrackerController extends Component {
         currency: this.props.match.params.cur
     }
 
-    // static getDerivedStateFromProps(nextProps, prevState) {
-    //     console.log('getDerivedStateFromProps');
-    //     console.log('Previous State : ' + prevState.currency);
-    //     console.log('Next Props : ' + nextProps.match.params.cur);
-    //     if (prevState.currency !== nextProps.match.params.cur) {
-    //         console.log('set new state');
-    //         return { currency : nextProps.match.params.cur };
-    //     }
-    //     return null;
-    // }
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('--- getDerivedStateFromProps ---');
+        console.log('prevState.currency : ' + prevState.currency);
+        console.log('nextProps.match.params.cur : ' + nextProps.match.params.cur);
+        if (prevState.currency !== nextProps.match.params.cur) {
+            console.log('Set new currency state');
+            return { 
+                currency : nextProps.match.params.cur,
+                colorStroke: setStrokeColor(nextProps.match.params.cur) 
+            };
+        }
+        else {
+            console.log('return null');
+            return null;
+        }
+    }
 
     // shouldComponentUpdate(nextProps, nextState) {
-    //     console.log('shouldComponentUpdate');
-    //     console.log('Parameter Props : ' + this.props.match.params.cur);
-    //     console.log('Next Props : ' + nextState.currency);
-    //     if (this.props.match.params.cur !== nextState.currency) {
+    //     console.log('--- shouldComponentUpdate ---');
+    //     console.log('this.props.currency : ' + this.props.currency);
+    //     console.log('nextProps.currency : ' + nextProps.currency);
+    //     console.log('nextProps.match.params.cur : ' + nextProps.match.params.cur);
+    //     console.log('this.state.currency : ' + this.state.currency);
+    //     console.log('nextState.currency : ' + nextState.currency);
+    //     if (this.state.currency !== nextState.currency) {
+    //         console.log('return true');
     //         return true;
     //     }
     //     else {
+    //         console.log('return false');
     //         return false;
     //     }
     // }
     
-    // componentDidUpdate(prevProps) {
-    //     console.log('componentDidUpdate');
-    //     console.log('Parameter Props : ' + this.props.match.params.cur);
-    //     console.log('Previous Props : ' + prevProps.currency);
-    //     //this.props.userID !== prevProps.userID
-    //     // if (prevProps.currency !== this.state.currency) {
-    //     //     //fetchnewProduct and set state to reload
-    //     // }
-    // }
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('--- componentDidUpdate ---');     
+        //console.log('prevProps.currency : ' + prevProps.currency);   
+        //console.log('this.props.currency : ' + this.props.currency);
+        console.log('prevState.currency : ' + prevState.currency);
+        console.log('this.state.currency : ' + this.state.currency);
+        if (prevState.currency !== this.state.currency) {
+            console.log('Do update !!');
+            console.log('By currency : ' + this.state.currency);
+            const [bpi, history] = await Promise.all([this.fetchLastestPrice(), this.fetchHistory(this.state.currency)]);
+            console.log(history);
+            this.setState({
+                loading: false,
+                bpi,
+                history
+            });
+        }
+    }
 
     async componentDidMount() {
-        console.log('componentDidMount');
+        console.log('--- componentDidMount ---');
         const [bpi, history] = await Promise.all([this.fetchLastestPrice(), this.fetchHistory(this.state.currency)]);
         console.log(history);
         this.setState({
@@ -67,16 +87,16 @@ class BitCoinTrackerController extends Component {
             bpi,
             history
         });
-        //this.timer = setInterval(this.priceUpdater, 5000);
+        this.timer = setInterval(this.priceUpdater, 5000);
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount');
-        //clearInterval(this.timer);
+        console.log('--- componentWillUnmount ---');
+        clearInterval(this.timer);
     }
 
     priceUpdater = async () => {
-        console.log('update');
+        console.log('--- update ---');
         const bpi = await this.fetchLastestPrice();
         this.setState({ bpi });
     }
@@ -96,6 +116,7 @@ class BitCoinTrackerController extends Component {
     }
 
     handleChange = async value => {
+        console.log('--- Handle Select Change ---');
         //this.setState({ loadingHist : true, currency: value })
         this.setState({ loadingHist: true, currency: value, colorStroke: setStrokeColor(value) })
         const history = await this.fetchHistory(value);
@@ -125,7 +146,7 @@ class BitCoinTrackerController extends Component {
                 </Row>
                 <Row gutter={32} style={{ paddingTop: 10 }}>
                     <Col span={3} offset={6}>
-                        <Select defaultValue={currency} style={{ width: 120 }} onChange={this.handleChange}>
+                        <Select value={currency} defaultValue={currency} style={{ width: 120 }} onChange={this.handleChange}>
                             <Option value="USD">USD</Option>
                             <Option value="GBP">GBP</Option>
                             <Option value="EUR">EUR</Option>

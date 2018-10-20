@@ -76,7 +76,7 @@ class CardMatchController extends Component {
         //alert(idx);
 
         let first = this.state.firstClick;
-        if (first == 0) {
+        if (first === 0) {
             first = 1;
             this.timerID = setInterval(() => this.tick(), 1000);
         }

@@ -13,7 +13,7 @@ class RecipeBoxView extends Component {
         
         return (<div key={this.props.id} className="col-lg-4 col-md-4 col-sm-4 col-xs-4 p-1">
                     <div className="card h-100 d-inline-block" style={{fontSize : 12, width : 371}} >
-                        <img className="card-img-top" src={this.props.pic} alt="Card image cap" />
+                        <img className="card-img-top" src={this.props.pic} alt="Card cap" />
                         <div className="card-body">
                             <h5 className="card-title">
                                 {this.props.title}
